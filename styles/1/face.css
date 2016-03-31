@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+body{
+	width:auto;
+	font-size:12px;
+}
+h4{
+	width:80%;
+	height:20px;
+	text-align:center;
+	margin: 20px auto;
+	text-line:20px;
+}
+img{
+	width:100px;
+	height:100px;
+	margin:2px 2px 0 2px;
+	border:1px solid  #333;
+	cursor:pointer;//设置鼠标样式
+}
+
+img:hover{
+
+	border:1px solid  #ccc;
+	cursor:pointer;//设置鼠标样式
+}
+#pic dl dd{
+	float:left
+}
+#pic dl{
+	width:80%;
+	margin: 0 auto;
+}

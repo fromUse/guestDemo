@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+#user {
+	float: left; width : 340px;
+	height: 250px;
+	border: 1px solid red;
+	margin: 0 0 10px 0px;
+	width: 340px;
+}
+
+#pics {
+	float: left; width : 340px;
+	height: 250px;
+	border: 1px solid red;
+	width: 340px;
+}
+
+#list {
+	float: right;
+	width: 600px;
+	height: 513px;
+	border: 1px solid red;
+	margin-bottom:10px;
+}
+#footer  p{
+	text-line:60px;
+margin-top:5px;
+}
