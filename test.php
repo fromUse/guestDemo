@@ -29,7 +29,7 @@
 						<li>555</li>
 				</ul>
 
-				
+
 				<button id="bt1">click1</button>
 				<button id="bt2">click2</button>
 		</div>
@@ -48,7 +48,7 @@
 			//	alert(li[1].text);//有反应 获取不到
 			//	alert(li[1].text());//没反应 获取不到
 			//	alert(li[0].value);//有反应 获取到
-			//	alert(li[0].value);//有反应 获取到	
+			//	alert(li[0].value);//有反应 获取到
 		});
 		var ul = $('ul');
 		$('bt2').click(function(){
@@ -57,10 +57,8 @@
 			//	alert(li[1].text);//有反应 获取不到
 			//	alert(li[1].text());//没反应 获取不到
 			//	alert(li[0].value);//有反应 获取到
-			//	alert(li[0].value);//有反应 获取到	
+			//	alert(li[0].value);//有反应 获取到
 			alert(ul);
 		});
-
-		
 </script>
 </html>
