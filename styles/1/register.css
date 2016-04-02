@@ -14,7 +14,9 @@
 #content dl{
 	width:auto;
 	margin:20px auto;
-	text-align:center;
+	margin-left: 350px;
+/*	text-align:center;*/
+
 }
 #content dl dt{
 	
@@ -24,9 +26,10 @@
 #content dl dd{
 	margin:10px 0;
 }
-#content dl dd img{
+#face_img{
 	width:100px;
 	height:100px;
+	margin-left: 90px;
 	border:1px dashed #999;
 }
 #content dl dd input.text{
@@ -41,16 +44,24 @@
 }
 
 #content dl .url{
-	margin:10px 0 0 -70px;
+	margin:10px 0 0 0px;
 }
 .code{
 		width:80px;
 		height:19px; 
 }
 
+#code_img{
+
+	margin-left: 10px;
+	margin-right:  -10px;
+	margin-bottom: -7px;
+}
 #content dl dd input#submit{
 	width:60px;
-	heigh:20px;
+	height:20px;
 	border:1px solid red;
-cursor:pointer; 
+	cursor:pointer;
+	margin-top: 10px;
+	margin-left: 100px; 
 }

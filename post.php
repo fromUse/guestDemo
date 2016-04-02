@@ -26,8 +26,8 @@ define('_STYLE', 'post');
     <title>Title</title>
 </head>
 <body>
-		<div id="test">
-
-		</div>
+	<div id="test">
+                    
+	</div>
 </body>
 </html>

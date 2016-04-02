@@ -25,7 +25,12 @@ define ( '_STYLE', 'register' );
 //导入网页头部
 require ROOT_PATH.'/includes/head.inc.php';
 ?>
+<?php 
 
+session_start();
+echo $_SESSION['code'];
+
+?>
 <div id="content">
 		<h3>会员注册</h3>
 
@@ -59,9 +64,9 @@ require ROOT_PATH.'/includes/head.inc.php';
 				<dd class="url">
 					个人主页 ：<input type="text" name="url" value="http://" class="text">
 				</dd>
-				<dd class="url">
+				<dd class="url"   >
 					验 证 码 ：<input type="text" name="code" class="text code" id="code">
-										<img src="<?php  require ROOT_PATH.'\code.php';?>">
+					<img src="code.php"  onclick="javascript:this.src='code.php?tm='+Math.random()" id="code_img">
 				</dd>
 				<dd>
 					<input type="submit" value="注册" class="'text" id="submit">

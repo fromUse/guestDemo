@@ -3,10 +3,6 @@
 *chenq
 *2016-3-30
 */
-//版本判断，版本低于PHP5.0的不给运行，一般用于部署服务器的时候才会用到
-if(PHP_VERSION <'5.0.0'){
-	exit('Version is to Low');
-}
 //声明一个常用用授权访问includes目录下的公共文件
 define('INC_PHP',true);
 
@@ -22,6 +18,7 @@ define('_STYLE', 'index');
     <meta charset="UTF-8">
     <title>Title</title>
     <?php 
+    //	include   css
     	require ROOT_PATH.'/includes/title.inc.php';
     ?>
 </head>
