@@ -1,7 +1,7 @@
 <?php
 /**
 *chenq
-*2016-3-30 
+*2016-3-30
 */
 // 引入公共文件
 require dirname ( __File__ ) . '/includes/common.inc.php';
@@ -21,11 +21,11 @@ define ( '_STYLE', 'register' );
     <title>注册页面</title>
 </head>
 <body>
-<?php 
+<?php
 //导入网页头部
 require ROOT_PATH.'/includes/head.inc.php';
 ?>
-	
+
 <div id="content">
 		<h3>会员注册</h3>
 
@@ -49,7 +49,7 @@ require ROOT_PATH.'/includes/head.inc.php';
 				<dd>
 					<img src="face/2.png" alt="头像选择" class="face" id="face_img">
 				</dd>
-					<dd><input type=hidden  name="img_tag" ></dd>					
+					<dd><input type=hidden  name="img_tag" ></dd>
 				<dd>
 					电子邮件：<input type="email" name="email" class="text">(* 必填 )
 				</dd>
@@ -61,6 +61,7 @@ require ROOT_PATH.'/includes/head.inc.php';
 				</dd>
 				<dd class="url">
 					验 证 码 ：<input type="text" name="code" class="text code" id="code">
+										<img src="<?php  require ROOT_PATH.'\code.php';?>">
 				</dd>
 				<dd>
 					<input type="submit" value="注册" class="'text" id="submit">
@@ -68,11 +69,11 @@ require ROOT_PATH.'/includes/head.inc.php';
 			</dl>
 		</form>
 	</div>
-<?php 
+<?php
 //导入网页脚部
 require ROOT_PATH .'/includes/footer.inc.php';
 
-?>	
+?>
 </body>
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/change_icon.js"></script>

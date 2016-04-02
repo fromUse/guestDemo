@@ -32,6 +32,7 @@
 
 				<button id="bt1">click1</button>
 				<button id="bt2">click2</button>
+
 		</div>
 </body>
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
@@ -51,14 +52,15 @@
 			//	alert(li[0].value);//有反应 获取到
 		});
 		var ul = $('ul');
-		$('bt2').click(function(){
+		$('#bt2').click(function(){
 		//获取li标签集合中的值要用li[index]指定下标
 			//获取标签的文本内容通过innerHTML获取
 			//	alert(li[1].text);//有反应 获取不到
 			//	alert(li[1].text());//没反应 获取不到
 			//	alert(li[0].value);//有反应 获取到
 			//	alert(li[0].value);//有反应 获取到
-			alert(ul);
 		});
+
+
 </script>
 </html>

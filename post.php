@@ -3,7 +3,6 @@
 *chenq
 *2016-3-30
 */
-
 // 引入公共文件
 require dirname ( __File__ ) . '/includes/common.inc.php';
 // 声明一个常量授权访问includes目录下的公共文件
@@ -20,13 +19,15 @@ define('_STYLE', 'post');
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <?php 
+    <?php
   	  //导入样式css文件
     	require ROOT_PATH.'/includes/title.inc.php';
     ?>
     <title>Title</title>
 </head>
 <body>
+		<div id="test">
 
+		</div>
 </body>
 </html>
