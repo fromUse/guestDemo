@@ -66,7 +66,7 @@ echo $_SESSION['code'];
 				</dd>
 				<dd class="url"   >
 					验 证 码 ：<input type="text" name="code" class="text code" id="code">
-					<img src="code.php"  onclick="javascript:this.src='code.php?tm='+Math.random()" id="code_img">
+					<img src="code.php" id="code_img">
 				</dd>
 				<dd>
 					<input type="submit" value="注册" class="'text" id="submit">

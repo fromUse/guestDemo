@@ -14,10 +14,10 @@ define('_STYLE', 'face');
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-			  <?php
+			 <?php
 			  //导入样式文件
-						require ROOT_PATH . '/includes/title.inc.php';
-						?>
+			require ROOT_PATH . '/includes/title.inc.php';
+			?>
     <title>头像选择</title>
 </head>
 <body>
