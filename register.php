@@ -17,19 +17,28 @@ if(isset($_POST['action'])){
 	//当有注册提交时执行
 	if ($_POST['action'] == 'register') {
 		//防止恶意注册，跨站攻击
-			if($_POST['checkcode'] == $_SESSION['code']){
-				//actionForm数组用于存储用户提交的表单数据
-				$actionForm = array();
-				$actionForm['user_name'] = _checkUserName($_POST['user_name']);
-				$actionForm['password'] = _checkPassword($_POST['password']);
-				$actionForm['notpassword'] = _checkNotPassword($_POST['notpassword'],$_POST['password']);
-
-				echo '用户名　：'.$actionForm['user_name'];
-				echo '<br/>';
-				echo '密码　：'.$actionForm['password'];
-				echo '<br/>';
-				echo '确认密码　：'.$actionForm['notpassword'];
-
+		//验证码全部是小写
+			if(!(strtolower($_POST['checkcode']) == $_SESSION['code'])){
+				echo "<script type=\"text/javascript\">alert(\"验证码错误\");history.back();</script>";
+				exit();
+		}else {
+			//actionForm数组用于存储用户提交的表单数据
+			$actionForm = array();
+			$actionForm['user_name'] = _checkUserName($_POST['user_name']);
+			$actionForm['password'] = _checkPassword($_POST['password']);
+			$actionForm['notpassword'] = _checkNotPassword($_POST['notpassword'],$_POST['password']);
+			$actionForm['pass_ask'] = _checkPass_Ask($_POST['pass_ask']);
+			$actionForm['pass_tell'] = _checkPass_Tell($_POST['pass_tell']);
+			echo '用户名　：'.$actionForm['user_name'];
+			echo '<br/>';
+			echo '密码　：'.$actionForm['password'];
+			echo '<br/>';
+			echo '确认密码　：'.$actionForm['notpassword'];
+			echo '<br/>';
+			echo '密码提示　：'.$actionForm['pass_ask'];
+			echo '<br/>';
+			echo '密码回答　：'.$actionForm['pass_tell'];
+			echo $_POST['pass_ask'];
 		}
 	}
 }

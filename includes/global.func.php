@@ -25,7 +25,9 @@ session_start();
 header('Content-type:image/png');
 //搜集验证码数据源
 $str = array(
- 3,4,5,6,7,8,a,b,c,d,e,f,h,i,j,k,m,n,o,p,r,s,t,u,v,w,x,y
+ 3,4,5,6,7,8,
+ a,b,c,d,e,f,h,i,j,k,m,n,o,p,r,s,t,u,v,w,x,y,
+ A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 );
 $code = '';
 //计算数组的长度
@@ -56,7 +58,8 @@ $code = '';
   }
 
   //把验证码保存到session中
-    $_SESSION['code'] = $code;
+	//保存到session的全部小写
+    $_SESSION['code'] = strtolower($code);
   //在图片上随机添加像素点
  for ($j=0; $j < 200; $j++)
  {
@@ -81,6 +84,17 @@ $code = '';
 imagedestroy($_img);
 }
 
+
+/**
+*
+* 此函数用于弹出提示，并返回上一个页面
+* @return void
+*/
+
+function _callbackPage($msg){
+		echo "<script type=\"text/javascript\">alert(\"$msg\");history.back();</script>";
+}
+
 /**
 *
 * 此函数用于验证表单中的用户是否合法与过滤
@@ -88,18 +102,17 @@ imagedestroy($_img);
 *	@param string user_name
 * @return string
 */
-function _checkUserName($user_name){
+function _checkUserName($user_name,$min=2,$max=20){
 		$user_name = trim($user_name);
 		$modle = "/[\<\>\ \^\@\!\%\#\*\(\)\-\=\+\《\》　]/";//特殊字符正则模式
 
-		if(mb_strlen($user_name,'utf-8')<2 || mb_strlen($user_name,'utf-8')>20)
+		if(mb_strlen($user_name,'utf-8')<$min || mb_strlen($user_name,'utf-8')>$max)
 		{
-			echo "<script type=\"text/javascript\">alert('用户名长度不合法');history.back();</script>";
+			_callbackPage('用户名长度不合法');
 			exit();
 		}else if(preg_match($modle,$user_name))
 		{
-
-			echo "<script type=\"text/javascript\">alert(\"用户名不能包含以上特殊字符\");history.back();</script>";
+			_callbackPage('\< \> 空格 \^ \@ \! \% \# \* \( \) \- \= \+ \《 \》　\n用户名不能包含以上特殊字符');
 			exit();
 		}
 
@@ -120,7 +133,7 @@ function _checkUserName($user_name){
 function _checkPassword($password,$min=6,$max=16){
 
 		if(mb_strlen($password,'utf-8') < 6 || mb_strlen($password,'utf-8') > 16){
-					echo "<script type=\"text/javascript\">alert(\"密码长度不能小于６位或大于16位\");history.back();</script>";
+				_callbackPage('密码长度不能小于６位或大于16位');
 					exit();
 		}
 		//给密码字符串进行ｍｄ5加密
@@ -138,10 +151,41 @@ function _checkPassword($password,$min=6,$max=16){
 function _checkNotPassword($notpassword,$password){
 
 		if(md5($notpassword) != md5($password)){
-					echo "<script type=\"text/javascript\">alert(\"密码不一致\");history.back();</script>";
+					_callbackPage('密码不一致');
 					exit();
 		}
 		//给密码字符串进行ｍｄ5加密
 		return md5($notpassword);
+}
+
+/**
+*
+* 此函数用于验证表单中的用户密码是否合法
+* 判断确认密码和密码是否一致
+*	@param string  password
+* @param string  notpassword
+* @return string
+*/
+function _checkPass_Ask($pass_ask){
+
+		if(mb_strlen($pass_ask,'utf-8') < 5 || mb_strlen($pass_ask,'utf-8') > 30){
+				_callbackPage('密码提示必须在５～30字内');
+					exit();
+		}
+		//给密码提示字符串进行转义
+		return mysqli_real_escape_string($pass_ask);
+}
+
+
+function _checkPass_Tell($pass_tell){
+			if(mb_strlen($pass_tell,'utf-8') < 1){
+				_callbackPage('密码回答必须填');
+				exit();
+			}else if (mb_strlen($pass_tell,'utf-8') > 20) {
+				_callbackPage('密码回答在１～２0字内');
+				exit();
+			}
+			//给密码提示字符串进行转义
+			return mysqli_real_escape_string($pass_tell);
 }
 ?>
