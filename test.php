@@ -61,6 +61,6 @@
 			//	alert(li[0].value);//有反应 获取到
 		});
 
-
+alert('ssssssssssssssssss');
 </script>
 </html>

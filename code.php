@@ -7,5 +7,6 @@
 //引入公共文件
 require dirname(__File__).'/includes/common.inc.php';
 //调用验证码函数
-_code(120,40,6);
+//默认宽是70，高20,4个字符
+_code();
 ?>

@@ -9,6 +9,30 @@ require dirname ( __File__ ) . '/includes/common.inc.php';
 define ( 'INC_PHP', true );
 //声明样式css关键字常量,用于引入css文件
 define ( '_STYLE', 'register' );
+
+//开启session
+session_start();
+//只有$_SESSION['action']存在时
+if(isset($_POST['action'])){
+	//当有注册提交时执行
+	if ($_POST['action'] == 'register') {
+		//防止恶意注册，跨站攻击
+			if($_POST['checkcode'] == $_SESSION['code']){
+				//actionForm数组用于存储用户提交的表单数据
+				$actionForm = array();
+				$actionForm['user_name'] = _checkUserName($_POST['user_name']);
+				$actionForm['password'] = _checkPassword($_POST['password']);
+				$actionForm['notpassword'] = _checkNotPassword($_POST['notpassword'],$_POST['password']);
+
+				echo '用户名　：'.$actionForm['user_name'];
+				echo '<br/>';
+				echo '密码　：'.$actionForm['password'];
+				echo '<br/>';
+				echo '确认密码　：'.$actionForm['notpassword'];
+
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="cn">
@@ -25,16 +49,12 @@ define ( '_STYLE', 'register' );
 //导入网页头部
 require ROOT_PATH.'/includes/head.inc.php';
 ?>
-<?php 
 
-session_start();
-echo $_SESSION['code'];
-
-?>
 <div id="content">
 		<h3>会员注册</h3>
 
-		<form method="post" action="post.php" name="register">
+		<form method="post" action="register.php" name="register">
+		<input type="hidden" name="action"  value="register" />
 			<dl>
 				<dt>请认真填写内容</dt>
 				<dd>用 户 名： <input type="text" name="user_name" class="text">(*必填，至少3位)
@@ -54,7 +74,7 @@ echo $_SESSION['code'];
 				<dd>
 					<img src="face/2.png" alt="头像选择" class="face" id="face_img">
 				</dd>
-					<dd><input type=hidden  name="img_tag" ></dd>
+					<dd><input type='hidden'  name="img_tag" ></dd>
 				<dd>
 					电子邮件：<input type="email" name="email" class="text">(* 必填 )
 				</dd>
@@ -65,7 +85,7 @@ echo $_SESSION['code'];
 					个人主页 ：<input type="text" name="url" value="http://" class="text">
 				</dd>
 				<dd class="url"   >
-					验 证 码 ：<input type="text" name="code" class="text code" id="code">
+					验 证 码 ：<input type="text" name="checkcode" class="text code" id="code">
 					<img src="code.php" id="code_img">
 				</dd>
 				<dd>

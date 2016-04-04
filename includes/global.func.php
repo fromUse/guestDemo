@@ -5,7 +5,7 @@
 
 */
 /**
- * 
+ *
  * 函数的功能是获取当前时间戳
  * @return float 返回值是一个浮点类型的数值
  */
@@ -25,7 +25,7 @@ session_start();
 header('Content-type:image/png');
 //搜集验证码数据源
 $str = array(
- 2,3,4,5,6,7,8,a,b,c,d,e,f,h,i,j,k,m,n,o,p,q,r,s,t,u,v,w,x,y
+ 3,4,5,6,7,8,a,b,c,d,e,f,h,i,j,k,m,n,o,p,r,s,t,u,v,w,x,y
 );
 $code = '';
 //计算数组的长度
@@ -38,15 +38,15 @@ $code = '';
  $x = 2;
  $y = 2;
 //创建一个指定颜色的画壁[背景]
- $back = imagecolorallocate( $_img,179,179,179);
+ $back = imagecolorallocate( $_img,221,240,237);
  //把背景颜色填充到画布
  imagefill($_img,0,0,$back);
   //随机生成字体颜色
 
   for($i=0;$i<$size;$i++){
     //随机生成y轴的偏移量
-  
-    $y += mt_rand(-2,$height/5);
+
+    $y += mt_rand(-($height/8),$height/8);
     $fontcolor = imagecolorallocate($_img,mt_rand(0,200),mt_rand(0,200),mt_rand(0,200));
     $index = mt_rand(0,$str_length);
     $code_iten = $str[$index];
@@ -58,7 +58,7 @@ $code = '';
   //把验证码保存到session中
     $_SESSION['code'] = $code;
   //在图片上随机添加像素点
- for ($j=0; $j < 200; $j++) 
+ for ($j=0; $j < 200; $j++)
  {
    $pointcolor = imagecolorallocate($_img,mt_rand(0,200),mt_rand(0,200),mt_rand(0,200));
    imagesetpixel($_img,mt_rand(0,69),mt_rand(0,69),$pointcolor);
@@ -79,5 +79,69 @@ $code = '';
  imagepng($_img);
  //最后把资源句柄给释放掉
 imagedestroy($_img);
+}
+
+/**
+*
+* 此函数用于验证表单中的用户是否合法与过滤
+* 包括去除头尾空格，判断用户名长度和特殊字符
+*	@param string user_name
+* @return string
+*/
+function _checkUserName($user_name){
+		$user_name = trim($user_name);
+		$modle = "/[\<\>\ \^\@\!\%\#\*\(\)\-\=\+\《\》　]/";//特殊字符正则模式
+
+		if(mb_strlen($user_name,'utf-8')<2 || mb_strlen($user_name,'utf-8')>20)
+		{
+			echo "<script type=\"text/javascript\">alert('用户名长度不合法');history.back();</script>";
+			exit();
+		}else if(preg_match($modle,$user_name))
+		{
+
+			echo "<script type=\"text/javascript\">alert(\"用户名不能包含以上特殊字符\");history.back();</script>";
+			exit();
+		}
+
+		//把字符串先进行转义再返回
+		//mysqli_real_escape_string($user_name);
+		return $user_name;
+}
+
+/**
+*
+* 此函数用于验证表单中的用户密码是否合法
+* 判断用户密码长度
+*	@param string  password
+* @param int min
+* @param int max
+* @return string
+*/
+function _checkPassword($password,$min=6,$max=16){
+
+		if(mb_strlen($password,'utf-8') < 6 || mb_strlen($password,'utf-8') > 16){
+					echo "<script type=\"text/javascript\">alert(\"密码长度不能小于６位或大于16位\");history.back();</script>";
+					exit();
+		}
+		//给密码字符串进行ｍｄ5加密
+		return md5($password);
+}
+
+/**
+*
+* 此函数用于验证表单中的用户密码是否合法
+* 判断确认密码和密码是否一致
+*	@param string  password
+* @param string  notpassword
+* @return string
+*/
+function _checkNotPassword($notpassword,$password){
+
+		if(md5($notpassword) != md5($password)){
+					echo "<script type=\"text/javascript\">alert(\"密码不一致\");history.back();</script>";
+					exit();
+		}
+		//给密码字符串进行ｍｄ5加密
+		return md5($notpassword);
 }
 ?>
