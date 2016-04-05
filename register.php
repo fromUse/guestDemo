@@ -29,17 +29,9 @@ if(isset($_POST['action'])){
 			$actionForm['notpassword'] = _checkNotPassword($_POST['notpassword'],$_POST['password']);
 			$actionForm['pass_ask'] = _checkPass_Ask($_POST['pass_ask']);
 			$actionForm['pass_tell'] = _checkPass_Tell($_POST['pass_tell']);
-			echo '用户名　：'.$actionForm['user_name'];
-			echo '<br/>';
-			echo '密码　：'.$actionForm['password'];
-			echo '<br/>';
-			echo '确认密码　：'.$actionForm['notpassword'];
-			echo '<br/>';
-			echo '密码提示　：'.$actionForm['pass_ask'];
-			echo '<br/>';
-			echo '密码回答　：'.$actionForm['pass_tell'];
-			echo $_POST['pass_ask'];
-		}
+			$actionForm['email'] = _checkEmail($_POST['email']);
+			$actionForm['QQ'] = _checkQQ($_POST['QQ']);
+			$actionForm['url'] = _checkUrl($_POST['url']);
 	}
 }
 ?>
