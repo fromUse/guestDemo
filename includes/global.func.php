@@ -160,10 +160,8 @@ function _checkNotPassword($notpassword,$password){
 
 /**
 *
-* 此函数用于验证表单中的用户密码是否合法
-* 判断确认密码和密码是否一致
-*	@param string  password
-* @param string  notpassword
+* 此函数用于验证表单中的用户密码提示
+*	@param string  pass_ask
 * @return string
 */
 function _checkPass_Ask($pass_ask){
@@ -177,6 +175,12 @@ function _checkPass_Ask($pass_ask){
 }
 
 
+/**
+*
+* 此函数用于验证表单中的用户密码回答
+*	@param string  pass_tell
+* @return string
+*/
 function _checkPass_Tell($pass_tell){
 			if(mb_strlen($pass_tell,'utf-8') < 1){
 				_callbackPage('密码回答必须填');
@@ -187,5 +191,63 @@ function _checkPass_Tell($pass_tell){
 			}
 			//给密码提示字符串进行转义
 			return mysqli_real_escape_string($pass_tell);
+}
+
+
+/**
+*
+* 此函数用于验证表单中的邮件地址
+*	@param string  email
+* @return string
+*/
+function _checkEmail($email){
+		//邮件验证正则模式
+		$model = '/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/';
+
+		if(empty($email)){
+			if(!preg_match($model,$email)){
+				_callbackPage('邮箱地址不合法');
+				exit();
+			}
+
+		}
+		return $email;
+}
+/**
+*
+* 此函数用于验证表单中的邮件地址
+*	@param string  QQ
+* @return string
+*/
+function _checkQQ($QQ){
+		//验证QQ正则模式
+		$model = '/^[1-9]{1}[0-9]{4,9}$/';
+		if(!empty($QQ)){
+			if(!preg_match($model,$QQ)){
+				_callbackPage('QQ账户不正确');
+				exit();
+			}
+		}
+
+		return $QQ;
+}
+
+/**
+*
+* 此函数用于验证表单中的邮件地址
+*	@param string  QQ
+* @return string
+*/
+function _checkUrl($url){
+		//验证QQ正则模式
+		$model = '/^https?:\/\/(\w+\.)?[\w\-\.]+(\.\w+)+$/';
+		if(!empty($url)){
+			if(!preg_match($model,$url)){
+				_callbackPage('url地址不合法');
+				exit();
+			}
+		}
+
+		return $url;
 }
 ?>
